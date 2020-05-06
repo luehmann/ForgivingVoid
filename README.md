@@ -1,4 +1,4 @@
-ForgivingVoid is a [Paper](https://papermc.io/) Plugin with the mechanics of the [Forgiving Void Mod](https://www.curseforge.com/minecraft/mc-mods/forgiving-void). Instead of dieing in the void, you will fall back down from the sky.
+ForgivingVoid is a [Paper](https://papermc.io/) Plugin with the mechanics of the [Forgiving Void Mod](https://www.curseforge.com/minecraft/mc-mods/forgiving-void). Instead of dying in the void you will fall back down from the sky.
 
 ## Config
 
