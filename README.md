@@ -7,4 +7,6 @@ ForgivingVoid is a [Paper](https://papermc.io/) Plugin with the mechanics of the
 ```yml
 teleport-height: 300.0
 only-player: true
+enabled-worlds:
+  - world
 ```

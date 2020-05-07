@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,6 +25,7 @@ import org.bukkit.util.Vector;
 public class ForgivingVoid extends JavaPlugin implements Listener {
 	double teleportHeight = 300;
 	boolean onlyPlayer = true;
+	List<String> enabledWorlds = new ArrayList<>();
 
 	@Override
 	public void onEnable() {
@@ -52,16 +55,20 @@ public class ForgivingVoid extends JavaPlugin implements Listener {
 		}
 		this.teleportHeight = config.getDouble("teleport-height");
 		this.onlyPlayer = config.getBoolean("only-player");
+		this.enabledWorlds = config.getStringList("enabled-worlds");
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onDamage(EntityDamageEvent event) {
 		Entity entity = event.getEntity();
 
-		if (onlyPlayer && !(entity instanceof Player)) {
+		if (this.onlyPlayer && !(entity instanceof Player)) {
 			return;
 		}
 		if (event.getCause() != DamageCause.VOID) {
+			return;
+		}
+		if (!this.enabledWorlds.contains(entity.getLocation().getWorld().getName())) {
 			return;
 		}
 		if (event.getDamage() > 1000) {
@@ -73,7 +80,7 @@ public class ForgivingVoid extends JavaPlugin implements Listener {
 
 		Vector velocity = entity.getVelocity().clone();
 		Location location = entity.getLocation();
-		location.setY(teleportHeight);
+		location.setY(this.teleportHeight);
 		entity.teleport(location);
 		entity.setVelocity(velocity);
 

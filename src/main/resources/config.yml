@@ -1,2 +1,4 @@
 teleport-height: 300.0
 only-player: true
+enabled-worlds:
+  - world
